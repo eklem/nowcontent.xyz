@@ -8,7 +8,7 @@ javascript:(function()
   var form = document.createElement('form');
   form.style.visibility = 'hidden';
   form.method = 'post';
-  form.action = '<your_zapier_webhook_url>';
+  form.action = 'https://hooks.zapier.com/hooks/catch/204265/1p9m8u/';
   form.target = 'response';
 
   input_url = document.createElement('input');
