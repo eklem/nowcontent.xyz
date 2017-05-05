@@ -25,8 +25,8 @@
   // title
   input_body = document.createElement("input");
   input_body.name = 'body';
-  console.dir(document.body.innerText);
-  input_body.value = document.body.innerText;
+  console.dir(document.body.textContent);
+  input_body.value = document.body.textContent;
   form.appendChild(input_body);
 
   // Adding form to document body
