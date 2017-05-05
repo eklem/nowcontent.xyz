@@ -3,4 +3,4 @@ A bookmarklet that document process and index the page you're reading. Takes the
 
 Homepage: [Norch Zapier bookmarklet](https://eklem.github.io/norch-zapier-bookmarklet/)
 
-Thanks to @brunohq for his gist [zapier-webhook-bookmarklet.js](https://gist.github.com/brunohq/52d73063540ffbf79a50d71601467870)
+Thanks to [@brunohq](https://github.com/brunohq) for his gist [zapier-webhook-bookmarklet.js](https://gist.github.com/brunohq/52d73063540ffbf79a50d71601467870)
