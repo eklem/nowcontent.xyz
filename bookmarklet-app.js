@@ -11,25 +11,21 @@ var vm = new Vue({
   methods: {
   },
   mounted() {
-    console.log(services)
-    services.push({userid: '204265', id: '1p9m8u'})
-    console.log(services)
+    // setup and populate db
+    const db = new Dexie("bookmarklets");
+    console.log('something')
+    db.version(1).stores({
+      services: 'name,userid,id,secretkey'
+    })
+    // put data to db
+    db.services.put({name: "Zapier", userid: "204265", id: "1p9m8u", secretkey: "" }).then (function(){
+      return db.services.get('Zapier')
+    }).then(function (service) {
+      console.dir(service)
+      services.push(service)
+    }).catch(function(error) {
+      console.error(error)
+    })
   }
 
 })
-
-
-      // //read and populate
-      // const db2 = new Dexie("bookmarklets");
-      // console.log('something')
-      // db2.version(1).stores({
-      //   services: 'name,userid,id,secretkey'
-      // })
-      
-      // db2.services.put({name: "Zapier", userid: "204265", id: "1p9m8u", secretkey: "" }).then (function(){
-      //   //
-      //   // Then when data is stored, read from it
-      //   //
-      //   let service = db2.services.get('Zapier')
-      //   this.services.push(service)
-      // })
