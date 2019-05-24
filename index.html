@@ -3,15 +3,16 @@
   <head>
     <meta charset="utf-8">
     <title>Zapier bookmarklet link</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="index.js"></script>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
-    <h1>Norch-Zapier bookmarklet</h1>
-    Drag bookmarklet-link to bookmark toolbar in browser. Go to a page you want to add to the search engine and press the link. The result will be available on <a href="http://test.klemespen.com/">test.klemespen.com</a>
-    
-    
-    <h2>Bookmarklet link</h2>
-    <a href="javascript: (function () {var bookmarklet = document.createElement('script'); bookmarklet.setAttribute('src', 'https://eklem.github.io/zapier-bookmarklet/index.js'); document.body.appendChild(bookmarklet); }());">Zapier bookmarklet</a>
+    <div id="app">
+      <h1>Bookmarklets</h1>
+      <h2>Zapier</h2>
+      {{services}}
+    </div>
+    <script src="./bookmarklet-app.js"></script>
   </body>
 </html>
