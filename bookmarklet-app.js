@@ -12,20 +12,19 @@ var vm = new Vue({
   },
   mounted() {
     // setup and populate db
-    const db = new Dexie("bookmarklets");
-    console.log('something')
+    const db = new Dexie("bookmarklets")
     db.version(1).stores({
-      services: 'name,userid,id,secretkey'
+      services: 'name,content'
     })
     // put data to db
-    db.services.put({name: "Zapier", userid: "204265", id: "1p9m8u", secretkey: "" }).then (function(){
+    db.services.put({name: "Zapier", content: '{"userid": "204265", "id": "1p9m8u", "secretkey": ""}'}).then (function(){
       return db.services.get('Zapier')
     }).then(function (service) {
-      console.dir(service)
+      console.log(service.content)
+      let zap = JSON.parse(service.content)
       services.push(service)
     }).catch(function(error) {
       console.error(error)
     })
   }
-
 })
