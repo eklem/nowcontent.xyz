@@ -5,16 +5,17 @@ function getDefaultData() {
   }
 }
 
-new Vue({
+var vm = new Vue({
   el: '#app',
   data: getDefaultData(),
   methods: {
-    mounted() {
-      console.log(services)
-      vm.services.push({userid: '204265', id: '1p9m8u'})
-      console.log(services)
-    }
+  },
+  mounted() {
+    console.log(services)
+    services.push({userid: '204265', id: '1p9m8u'})
+    console.log(services)
   }
+
 })
 
 
