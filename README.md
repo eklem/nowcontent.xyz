@@ -14,3 +14,11 @@ Thanks to [@brunohq](https://github.com/brunohq) for his gist [zapier-webhook-bo
 * [ ] Zapier.com
 * [ ] Sanity.io
 * [ ] JSONbin.io
+
+## Screenshots of functionality on nowcontent.xyz
+The part with the actual bookmarklets comes later.
+
+<img width="1280" alt="Screenshot 2019-06-12 at 09 15 56" src="https://user-images.githubusercontent.com/236656/59330848-e399ea00-8cf2-11e9-9ed6-0c37fc157f2e.png">
+<img width="1280" alt="Screenshot 2019-06-12 at 12 35 28" src="https://user-images.githubusercontent.com/236656/59344606-bc511600-8d0e-11e9-80e5-5383185ed840.png">
+<img width="1280" alt="Screenshot 2019-06-12 at 12 35 13" src="https://user-images.githubusercontent.com/236656/59344614-c07d3380-8d0e-11e9-87e7-05837aadccea.png">
+
