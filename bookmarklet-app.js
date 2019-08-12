@@ -1,7 +1,5 @@
 function getDefaultData() {
-  services = []
-  services = []
-  
+  services  = []
   return { 
     services
   }
@@ -50,13 +48,14 @@ var vm = new Vue({
       services: 'id,value'
     })
     // put data to db
-    db.services.put({id: 's23lsdj4s', content: '{"name": "Zapier to Norch", "webhook": "https://hooks.zapier.com/hooks/catch/204265/1p9m8u/"}'}).then (function(){
-      return db.services.get('s23lsdj4s')
+    db.services.put({id: 's49lsdj4s', content: '{"name": "Zapier to Norch", "webhook": "https://hooks.zapier.com/hooks/catch/204265/"}'}).then (function(){
+      //return db.services.get('s23lsdj4s')
+      return db.services.toCollection().toArray()
     }).then(function (service) {
-      let zap = JSON.parse(service.content)
+      // let zap = JSON.parse(service.content)
       console.log(service)
-      console.log(zap.name)
-      console.log(zap.webhook)
+      // console.log(zap.name)
+      // console.log(zap.webhook)
       services.push(service)
     }).catch(function(error) {
       console.error(error)
