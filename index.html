@@ -2,16 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Zapier bookmarklet link</title>
+    <title>Nowcontent.xyz</title>
     <!-- <link rel="stylesheet" href="style.css"> -->
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
     <div id="app">
-      <h1>Bookmarklets</h1>
-      <h2>Zapier</h2>
-      <pre>{{services[0].name}}</pre>
+      <h1>Nowcontent.xyz - Bookmarklets</h1>
+      Bookmarklets for adding the content of a page to any service.
+      <h2>Bookmarklets for endpoints added</h2>
+      <ul v-for="service in services">
+        <li>{{service.name}} - {{service.content}}</li>
+      </ul>
+      
+      <h2>All services array</h2>
       <pre>{{services}}</pre>
     </div>
     <script src="./bookmarklet-app.js"></script>
