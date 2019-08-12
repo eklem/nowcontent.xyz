@@ -1,6 +1,5 @@
 function getDefaultData() {
   services = []
-  services = []
   
   return { 
     services
@@ -15,10 +14,6 @@ var vm = new Vue({
     // Populate services data model
     readFromDB: function() {
       console.log('Reading from DB')
-      // loop through stuff
-      // JSON.parse strings of content
-      // ID = Object ?
-      // Populate data model
     },
     // WRITE when user wants to create new or edit old
     // If ID not set, generate ID
@@ -50,11 +45,11 @@ var vm = new Vue({
       services: 'id,value'
     })
     // put data to db
-    db.services.put({id: 's23lsdj4s', content: '{"name": "Zapier to Norch", "webhook": "https://hooks.zapier.com/hooks/catch/204265/1p9m8u/"}'}).then (function(){
-      return db.services.get('s23lsdj4s')
+    db.services.put({id: '1', content: '{"name": "Zapier to Norch", "webhook": "https://hooks.zapier.com/hooks/catch/204265/1p9m8u/"}'}).then (function(){
+      return db.services.get('1')
     }).then(function (service) {
+      console.log(service.content)
       let zap = JSON.parse(service.content)
-      console.log(service)
       console.log(zap.name)
       console.log(zap.webhook)
       services.push(service)
