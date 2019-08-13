@@ -5,7 +5,7 @@ function getDefaultData() {
   }
 }
 
-var vm = new Vue({
+var bookmarklets = new Vue({
   el: '#app',
   data: getDefaultData(),
   methods: {
@@ -48,15 +48,15 @@ var vm = new Vue({
       services: 'id,value'
     })
     // put data to db
-    db.services.put({id: 's49lsdj4s', content: '{"name": "Zapier to Norch", "webhook": "https://hooks.zapier.com/hooks/catch/204265/"}'}).then (function(){
+    db.services.put({id: '423lsdj4s', content: '{"name": "Zapier to Norch", "webhook": "https://hooks.zapier.com/hooks/catch/204265/"}'}).then (function(){
       //return db.services.get('s23lsdj4s')
-      return db.services.toCollection().toArray()
+      return db.services.toArray()
     }).then(function (service) {
       // let zap = JSON.parse(service.content)
       console.log(service)
       // console.log(zap.name)
       // console.log(zap.webhook)
-      services.push(service)
+      bookmarklets.services = service
     }).catch(function(error) {
       console.error(error)
     })
