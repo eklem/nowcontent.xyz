@@ -1,10 +1,14 @@
 function getDefaultData() {
-  services  = []
-  // Initiating DB
   db = new Dexie("bookmarklets")
   db.version(1).stores({
     services: 'id,value'
   }) 
+  services  = []
+  serviceTemplates = {
+    'jsonbin': {},
+    'sanity': {},
+    'zapier': {}
+  }
   return { 
     services,
     db
@@ -76,4 +80,11 @@ const stringParse = function(array){
     array[i].content = JSON.parse(array[i].content)
   }
   return array
+}
+
+// Bookmarklet JavaScript generating
+// Stitching together embedded scripts for the bookmarklets
+const zapierScript = function(template) {
+  const bookmarklet = ''
+  return bookmarklet
 }
