@@ -4,30 +4,64 @@ function getDefaultData() {
     services: 'id,value'
   }) 
   services  = []
-  serviceTemplates = {
-    'jsonbin': {
-      name: '',
-      serviceName: 'Zapier',
-      secretKey: '',
-      collectionID: ''
+  serviceTemp = []
+  serviceTemplates = [
+    { 
+      serviceName: 'JSONbin.io', 
+      content: [
+        { 
+          name: '',
+          label: ''
+        },
+        {
+          secretKey: '',
+          label: ''
+        },
+        {
+          collectionID: '',
+          label: ''
+        }
+      ]
     },
-    'sanity': {
-      name: '',
-      serviceName: 'Zapier',
-      projectID: '',
-      datasetName: '',
-      tokenWithWriteAccess: ''
+    { 
+      serviceName: 'Sanity.io',
+      content: [
+        {
+          name: '',
+          label: ''
+        },
+        {
+          projectID: '',
+          label: ''
+        },
+        {
+          datasetName: '',
+          label: ''
+        },
+        {
+          tokenWithWriteAccess: '',
+          label: ''
+        }
+      ]
     },
-    'zapier': {
-      name: '',
-      serviceName: 'Zapier',
-      webhook: ''
+    { 
+      serviceName: 'Zapier.com',
+      content: [
+        {
+          name: '',
+          label: ''
+        },
+        {
+          webhook: '',
+          label: ''
+        }
+      ]
     }
-  }
+  ]
   return { 
+    db,
     services,
-    serviceTemplates,
-    db
+    serviceTemplates
   }
 }
 
