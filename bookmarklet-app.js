@@ -5,12 +5,28 @@ function getDefaultData() {
   }) 
   services  = []
   serviceTemplates = {
-    'jsonbin': {},
-    'sanity': {},
-    'zapier': {}
+    'jsonbin': {
+      name: '',
+      serviceName: 'Zapier',
+      secretKey: '',
+      collectionID: ''
+    },
+    'sanity': {
+      name: '',
+      serviceName: 'Zapier',
+      projectID: '',
+      datasetName: '',
+      tokenWithWriteAccess: ''
+    },
+    'zapier': {
+      name: '',
+      serviceName: 'Zapier',
+      webhook: ''
+    }
   }
   return { 
     services,
+    serviceTemplates,
     db
   }
 }
