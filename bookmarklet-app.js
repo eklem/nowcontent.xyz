@@ -24,9 +24,8 @@ let bookmarklets = new Vue({
       }).catch(function(error) {
         console.error(error)
       })
-      
     },
-    
+
     // WRITE when user wants to create new or edit old
     // If ID not set, generate ID
     // Fire off a READ at the end
@@ -45,6 +44,7 @@ let bookmarklets = new Vue({
     // Fire off a READ at the end
     deleteFromDB: function(id) {
       console.log('Deleting from DB')
+      readFromDB()
     },
 
     // Show edit mode for ID and hide view mode
@@ -76,10 +76,4 @@ const stringParse = function(array){
     array[i].content = JSON.parse(array[i].content)
   }
   return array
-}
-
-// Initiate DB
-const initiateDB = function() {
-  // setup and populate db
-  
 }
