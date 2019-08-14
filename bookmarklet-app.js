@@ -8,12 +8,8 @@ function getDefaultData() {
   serviceTemplates = [
     { 
       serviceName: 'JSONbin.io', 
+      name: '',
       content: [
-        {
-          type:  'name',
-          value: '',
-          label: 'Name'
-        },
         {
           type: 'secretKey',
           value: '',
@@ -28,12 +24,8 @@ function getDefaultData() {
     },
     { 
       serviceName: 'Sanity.io',
+      name: '',
       content: [
-        {
-          type: 'name',
-          value: '',
-          label: 'Name'
-        },
         {
           type: 'projectID',
           value: '',
@@ -53,12 +45,8 @@ function getDefaultData() {
     },
     { 
       serviceName: 'Zapier.com',
+      name: '',
       content: [
-        {
-          type: 'name',
-          value: '',
-          label: 'Name'
-        },
         {
           type: 'webhook',
           value: '',
@@ -76,7 +64,7 @@ function getDefaultData() {
 }
 
 let bookmarklets = new Vue({
-  el: '#app',
+  el: '#bookmarklets',
   data: getDefaultData(),
   methods: {
     // READ from db
