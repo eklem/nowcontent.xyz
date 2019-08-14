@@ -3,23 +3,26 @@ function getDefaultData() {
   db.version(1).stores({
     services: 'id,value'
   }) 
+  selectedService = Number
   services  = []
-  serviceTemp = []
   serviceTemplates = [
     { 
       serviceName: 'JSONbin.io', 
       content: [
-        { 
-          name: '',
-          label: ''
+        {
+          type:  'name',
+          value: '',
+          label: 'Name'
         },
         {
-          secretKey: '',
-          label: ''
+          type: 'secretKey',
+          value: '',
+          label: 'secret_key'
         },
         {
-          collectionID: '',
-          label: ''
+          type: 'collectionID',
+          value: '',
+          label: 'collection_id'
         }
       ]
     },
@@ -27,20 +30,24 @@ function getDefaultData() {
       serviceName: 'Sanity.io',
       content: [
         {
-          name: '',
-          label: ''
+          type: 'name',
+          value: '',
+          label: 'Name'
         },
         {
-          projectID: '',
-          label: ''
+          type: 'projectID',
+          value: '',
+          label: 'project_id'
         },
         {
-          datasetName: '',
-          label: ''
+          type: 'datasetName',
+          value: '',
+          label: 'dataset_name'
         },
         {
-          tokenWithWriteAccess: '',
-          label: ''
+          type: 'tokenwithWriteAccess',
+          value: '',
+          label: 'token_with_write_access'
         }
       ]
     },
@@ -48,18 +55,21 @@ function getDefaultData() {
       serviceName: 'Zapier.com',
       content: [
         {
-          name: '',
-          label: ''
+          type: 'name',
+          value: '',
+          label: 'Name'
         },
         {
-          webhook: '',
-          label: ''
+          type: 'webhook',
+          value: '',
+          label: 'Webhook'
         }
       ]
     }
   ]
   return { 
     db,
+    selectedService,
     services,
     serviceTemplates
   }

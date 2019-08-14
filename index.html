@@ -12,8 +12,14 @@
       <h1>Nowcontent.xyz - Bookmarklets</h1>
       Bookmarklets for adding the content of a page to any service.
       <h2>Add bookmarklet</h2>
-      <div v-for="serviceTemplate in serviceTemplates">
-        {{serviceTemplate.serviceName}}<input type="radio"
+      <div v-for="(serviceTemplate, index) in serviceTemplates">
+        <input type="radio" name="service" :value="index" v-model.number="selectedService"> {{serviceTemplate.serviceName}}
+      </div>
+      <div v-for="(serviceTemplate, index) in serviceTemplates">
+        <div v-for="inputElement in serviceTemplate.content ">
+          {{inputElement.label}}
+          <input type="text" :placeholder="inputElement.label" v-model="inputElement.value">
+        </div>
       </div>
       <h2>Bookmarklets for endpoints added</h2>
       <ul v-for="service in services">
