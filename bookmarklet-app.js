@@ -1,10 +1,16 @@
 function getDefaultData() {
+  // Initialize DB
   db = new Dexie("bookmarklets")
   db.version(1).stores({
     services: 'id,value'
   }) 
-  selectedService = Number
+  // Array to hold stuff read from DB
   services  = []
+  // Temporary object to put to DB
+  servicesTemp = {}
+  // Templates for 
+  // A: Render input form
+  // B: Keep data to put to serviceTemp 
   serviceTemplates = [
     { 
       serviceName: 'JSONbin.io', 
@@ -60,8 +66,8 @@ function getDefaultData() {
   ]
   return { 
     db,
-    selectedService,
     services,
+    servicesTemp,
     serviceTemplates
   }
 }
@@ -84,15 +90,35 @@ let bookmarklets = new Vue({
     // WRITE when user wants to create new or edit old
     // If ID not set, generate ID
     // Fire off a READ at the end
-    writeToDB: function(formInput) {
+    addBookmarklet: function(index) {
       console.log('Writing to DB')
-      db.services.put({id: '423lsdj4s', content: '{"name": "Zapier to Norch", "webhook": "https://hooks.zapier.com/hooks/catch/204265/"}'}).then (function(){
+
+      // Transforming input into object to write to DB
+      // This stuff can be done better !!!
+      let id = ''
+      let contentObj = {}
+      this.servicesTemp = {name: serviceTemplates[index].name, serviceName: serviceTemplates[index].serviceName}
+      for (let i = 0; i < serviceTemplates[index].content.length; i++) {
+        delete serviceTemplates[index].content[i].label
+        let key = serviceTemplates[index].content[i].type
+        let value = serviceTemplates[index].content[i].value
+        contentObj = {[key]: value}
+        this.servicesTemp = {...this.servicesTemp, ...contentObj}
+      }
+      hashedID = this.hashCode(JSON.stringify(this.servicesTemp))
+      this.servicesTemp = {id: hashedID, content: JSON.stringify(this.servicesTemp)}
+
+      // Put stuff to indexedDB
+      db.services.put(this.servicesTemp).then (function(){
         return db.services.toArray()
       }).then(function (service) {
         bookmarklets.services = service
       }).catch(function(error) {
         console.error(error)
       })
+
+      // Clean up data
+      this.resetData()
     },
 
     // Delete ID
@@ -111,7 +137,14 @@ let bookmarklets = new Vue({
     hideEdit: function(id) {
       console.log('Hide edit')
     },
-
+    resetData: function() {
+      var def = getDefaultData()
+      Object.assign(this.$data, def)
+    },
+    hashCode: function(str) {
+      return str.split('').reduce((prevHash, currVal) =>
+        (((prevHash << 5) - prevHash) + currVal.charCodeAt(0))|0, 0);
+    },
     showService: function(index) {
       for (let i = 0; i < serviceTemplates.length; i++) {
         serviceTemplates[i].show = false

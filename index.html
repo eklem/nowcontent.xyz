@@ -14,17 +14,17 @@
       <h2>Where to send data</h2>
       <div v-for="(serviceTemplate, index) in serviceTemplates">
         <input type="radio" name="service" :value="index"  v-on:click="showService(index)">
-        {{ serviceTemplate.serviceName}}
+        {{ serviceTemplate.serviceName }}
       </div>
       <h2>Bookmarklet name</h2>
       <template v-for="(serviceTemplate, index) in serviceTemplates">
           <div v-show="serviceTemplate.show">
-          <input type="text" v-model="serviceTemplate.name">
+          <input type="text" placeholder="bookmarklet name" v-model="serviceTemplate.name">
           <div v-for="inputElement in serviceTemplate.content ">
             {{inputElement.label}}
             <input type="text" :placeholder="inputElement.label" v-model="inputElement.value">
           </div>
-          <button @click="">Add</button>
+          <button v-on:click="addBookmarklet(index)">Add</button>
         </div>
       </template>
       <h2>Bookmarklets for endpoints added</h2>
