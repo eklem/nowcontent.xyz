@@ -9,6 +9,7 @@ function getDefaultData() {
     { 
       serviceName: 'JSONbin.io', 
       name: '',
+      show: false,
       content: [
         {
           type: 'secretKey',
@@ -25,6 +26,7 @@ function getDefaultData() {
     { 
       serviceName: 'Sanity.io',
       name: '',
+      show: false,
       content: [
         {
           type: 'projectID',
@@ -46,6 +48,7 @@ function getDefaultData() {
     { 
       serviceName: 'Zapier.com',
       name: '',
+      show: false,
       content: [
         {
           type: 'webhook',
@@ -107,6 +110,13 @@ let bookmarklets = new Vue({
     // Hide edit mode for ID and show view mode
     hideEdit: function(id) {
       console.log('Hide edit')
+    },
+
+    showService: function(index) {
+      for (let i = 0; i < serviceTemplates.length; i++) {
+        serviceTemplates[i].show = false
+      }
+      serviceTemplates[index].show = true
     }
   },
   mounted: function() {

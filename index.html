@@ -13,17 +13,20 @@
       Bookmarklets for adding the content of a page to any service.
       <h2>Where to send data</h2>
       <div v-for="(serviceTemplate, index) in serviceTemplates">
-        <input type="radio" name="service" :value="index" v-model.number="selectedService"> {{serviceTemplate.serviceName}}
+        <input type="radio" name="service" :value="index"  v-on:click="showService(index)">
+        {{ serviceTemplate.serviceName}}
       </div>
       <h2>Bookmarklet name</h2>
-      <div v-for="(serviceTemplate, index) in serviceTemplates">
-        <input type="text" v-model="serviceTemplate.name">
-        <div v-for="inputElement in serviceTemplate.content ">
-          {{inputElement.label}}
-          <input type="text" :placeholder="inputElement.label" v-model="inputElement.value">
+      <template v-for="(serviceTemplate, index) in serviceTemplates">
+          <div v-show="serviceTemplate.show">
+          <input type="text" v-model="serviceTemplate.name">
+          <div v-for="inputElement in serviceTemplate.content ">
+            {{inputElement.label}}
+            <input type="text" :placeholder="inputElement.label" v-model="inputElement.value">
+          </div>
+          <button @click="">Add</button>
         </div>
-        <button @click="">Add</button>
-      </div>
+      </template>
       <h2>Bookmarklets for endpoints added</h2>
       <ul v-for="service in services">
         <li>{{service.id}} - {{service.content}}</li>
