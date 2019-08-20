@@ -3,7 +3,13 @@ function getDefaultData() {
   db = new Dexie("bookmarklets")
   db.version(1).stores({
     services: 'id,value'
-  }) 
+  })
+  // Script objects for Bookmarklet scripts
+  scripts = {
+    'jsonbinio': '',
+    'sanityio': '',
+    'zapiercom': ''
+  }
   // Array to hold stuff read from DB
   services  = []
   // Temporary object to put to DB
@@ -66,6 +72,7 @@ function getDefaultData() {
   ]
   return { 
     db,
+    scripts,
     services,
     servicesTemp,
     serviceTemplates
@@ -119,6 +126,28 @@ let bookmarklets = new Vue({
 
       // Clean up data
       this.resetData()
+    },
+    generateScript: function(serviceName, id) {
+      if (serviceName === 'JSONbin.io') {
+        console.log('Hello ' + serviceName + ' - ID: ' + id)
+      }
+      else if (serviceName === 'Sanity.io') {
+        console.log('Hello ' + serviceName + ' - ID: ' + id)
+      }
+      else if (serviceName === 'Zapier.com') {
+        console.log('Hello ' + serviceName + ' - ID: ' + id)
+        this.randomNumber = Math.floor((Math.random() * 10) + 1);
+        return this.scripts.zapiercom = `
+        javascript: (function () {
+          var test = 'something variable: ` + this.randomNumber + `';
+          var bookmarklet = document.createElement('script');
+          bookmarklet.setAttribute('text',
+            alert(test)
+          );
+          document.body.appendChild(bookmarklet);
+        }());
+      `
+      }
     },
 
     // Delete ID
