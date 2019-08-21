@@ -136,17 +136,24 @@ let bookmarklets = new Vue({
       }
       else if (serviceName === 'Zapier.com') {
         console.log('Hello ' + serviceName + ' - ID: ' + id)
-        this.randomNumber = Math.floor((Math.random() * 10) + 1);
-        return this.scripts.zapiercom = `
-        javascript: (function () {
-          var test = 'something variable: ` + this.randomNumber + `';
-          var bookmarklet = document.createElement('script');
-          bookmarklet.setAttribute('text',
-            alert(test)
-          );
-          document.body.appendChild(bookmarklet);
-        }());
-      `
+        // this.randomNumber = Math.floor((Math.random() * 10) + 1);
+
+        var GREETING = "Hi, I'm ";
+        var NAME = "Rob";
+        return this.scripts.zapiercom = 'javascript: (' + function(greeting, name) { 
+          alert(greeting + name);
+          alert(name + greeting + name);
+        } + ')(' + JSON.stringify(GREETING) + ',' + JSON.stringify(NAME) + ')';
+      //   return this.scripts.zapiercom = `
+      //   javascript: (function () {
+      //     var test = 'something variable: ` + this.randomNumber + `';
+      //     var bookmarklet = document.createElement('script');
+      //     bookmarklet.setAttribute('text',
+      //       alert(test)
+      //     );
+      //     document.body.appendChild(bookmarklet);
+      //   }());
+      // `
       }
     },
 
