@@ -136,24 +136,33 @@ let bookmarklets = new Vue({
       }
       else if (serviceName === 'Zapier.com') {
         console.log('Hello ' + serviceName + ' - ID: ' + id)
-        // this.randomNumber = Math.floor((Math.random() * 10) + 1);
-
-        var GREETING = "Hi, I'm ";
-        var NAME = "Rob";
-        return this.scripts.zapiercom = 'javascript: (' + function(greeting, name) { 
-          alert(greeting + name);
-          alert(name + greeting + name);
-        } + ')(' + JSON.stringify(GREETING) + ',' + JSON.stringify(NAME) + ')';
-      //   return this.scripts.zapiercom = `
-      //   javascript: (function () {
-      //     var test = 'something variable: ` + this.randomNumber + `';
-      //     var bookmarklet = document.createElement('script');
-      //     bookmarklet.setAttribute('text',
-      //       alert(test)
-      //     );
-      //     document.body.appendChild(bookmarklet);
-      //   }());
-      // `
+        var WEBHOOK = 'https://hooks.zapier.com/hooks/catch/204265/1p9m8u/'
+        return this.scripts.zapiercom = 'javascript: (' + function(webhook) {
+          var iframe = document.createElement('iframe');
+          iframe.name = 'response';
+          iframe.style.visibility = 'hidden';
+          document.body.appendChild(iframe);
+          var form = document.createElement('form');
+          form.style.visibility = 'hidden';
+          form.method = 'post';
+          form.action = webhook;
+          form.target = 'response';
+          input_url = document.createElement('input');
+          input_url.name = 'url';
+          input_url.value = window.location.href;
+          form.appendChild(input_url);
+          input_title = document.createElement('input');
+          input_title.name = 'title';
+          input_title.value = document.title;
+          form.appendChild(input_title);
+          input_body = document.createElement("input");
+          input_body.name = 'body';
+          console.dir(document.body.innerText);
+          input_body.value = document.body.innerText;
+          form.appendChild(input_body);
+          document.body.appendChild(form);
+          form.submit();
+        } + ')(' + JSON.stringify(WEBHOOK) + ')';
       }
     },
 
