@@ -137,6 +137,7 @@ let bookmarklets = new Vue({
               body: body
             }
           }]);
+          console.log(mutations);
           fetch(endpointUrl, {
             method: 'post',
             headers: {
