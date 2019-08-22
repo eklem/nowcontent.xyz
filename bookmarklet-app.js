@@ -235,6 +235,7 @@ let bookmarklets = new Vue({
     resetData: function() {
       var def = getDefaultData()
       Object.assign(this.$data, def)
+      this.readFromDB()
     },
     hashCode: function(str) {
       return str.split('').reduce((prevHash, currVal) =>
