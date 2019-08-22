@@ -116,6 +116,26 @@ let bookmarklets = new Vue({
       }
       else if (serviceName === 'Sanity.io') {
         console.log('Hello ' + serviceName + ' - ID: ' + id)
+        let script = 'javascript: (' + function(projectID, datasetName, tokenWithWriteAccess) {
+          var url = window.location.href;
+          var title = document.title;
+          var body = document.body.innerText;
+          var req = new XMLHttpRequest();
+          req.onreadystatechange = () => {
+            if (req.readyState == XMLHttpRequest.DONE) {
+              console.log(req.responseText);
+            }
+          };
+          let endpointUrl = 'https://' + projectID + '.api.sanity.io/v1/data/mutate/' + datasetName;
+          let bearerToken = 'Bearer ' + tokenWithWriteAccess;
+          req.open('POST', endpointUrl, true);
+          req.setRequestHeader('Content-Type', 'application/json');
+          req.setRequestHeader('Authorization', bearerToken);
+          var sendObj = JSON.stringify([{ createOrReplace: { '_id': url, 'title': title, 'body': body } }]);
+          req.send(sendObj);
+        } + ')(' + JSON.stringify(content.projectID) + ',' + JSON.stringify(content.datasetName) +',' + JSON.stringify(content.tokenWithWriteAccess) + ')';
+        console.log(script)
+        return script
       }
       else if (serviceName === 'Zapier.com') {
         console.log('Hello ' + serviceName + ' - ID: ' + id)
