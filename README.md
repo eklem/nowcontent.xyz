@@ -6,11 +6,11 @@ A bookmarklet that grabs the URL, title and text from the body element and send 
 ## Why
 Why do we need this? To easily make the pages you'reinterested in searchable. I've written a little blogpost about [The volatile search engine as a use case](https://medium.com/norch/the-volatile-search-engine-as-a-use-case-b6f29b9d82ee)
 
-## Supported services to come soon
+## Supported services so far
 
-* [x] Zapier.com
-* [x] Sanity.io
-* [x] JSONbin.io
+* Zapier.com
+* Sanity.io
+* JSONbin.io
 
 ## Screenshots of functionality on nowcontent.xyz
 The part with the actual bookmarklets comes later.
