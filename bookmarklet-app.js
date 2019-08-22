@@ -144,7 +144,7 @@ let bookmarklets = new Vue({
               'Content-type': 'application/json',
               'Authorization': bearerToken
             },
-            body: {mutations}
+            body: mutations
           })
             .then(response => response.json())
             .then(result => console.log(result))
