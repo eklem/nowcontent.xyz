@@ -131,10 +131,10 @@ let bookmarklets = new Vue({
           req.open('POST', endpointUrl, true);
           req.setRequestHeader('Content-Type', 'application/json');
           req.setRequestHeader('Authorization', bearerToken);
-          var sendObj = [{ createOrReplace: { '_id': url, 'title': title, 'body': body } }];
+          var sendObj = JSON.stringify([{ createOrReplace: { '_id': url, 'title': title, 'body': body } }]);
+          console.log(sendObj)
           req.send(sendObj);
         } + ')(' + JSON.stringify(content.projectID) + ',' + JSON.stringify(content.datasetName) + ',' + JSON.stringify(content.tokenWithWriteAccess) + ')';
-        console.log(script)
         return script
       }
       else if (serviceName === 'Zapier.com') {
