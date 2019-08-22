@@ -131,10 +131,10 @@ let bookmarklets = new Vue({
           
           const mutations = [{
             createOrReplace: {
-              _id: url,
-              url: url,
-              title: title,
-              body: body
+              '_id': url,
+              'url': url,
+              'title': title,
+              'body': body
             }
           }];
           fetch(endpointUrl, {
