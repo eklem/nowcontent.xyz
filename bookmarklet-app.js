@@ -128,12 +128,26 @@ let bookmarklets = new Vue({
           };
           let endpointUrl = 'https://' + projectID + '.api.sanity.io/v1/data/mutate/' + datasetName;
           let bearerToken = 'Bearer ' + tokenWithWriteAccess;
-          req.open('POST', endpointUrl, true);
-          req.setRequestHeader('Content-Type', 'application/json');
-          req.setRequestHeader('Authorization', bearerToken);
-          var sendObj = JSON.stringify([{ createOrReplace: { '_id': url, 'title': title, 'body': body } }]);
-          console.log(sendObj);
-          req.send(sendObj);
+          
+          const mutations = [{
+            createOrReplace: {
+              _id: url,
+              url: url,
+              title: title,
+              body: body
+            }
+          }];
+          fetch(endpointUrl, {
+            method: 'post',
+            headers: {
+              'Content-type': 'application/json',
+              'Authorization': bearerToken
+            },
+            body: {mutations}
+          })
+            .then(response => response.json())
+            .then(result => console.log(result))
+            .catch(error => console.error(error));
         } + ')(' + JSON.stringify(content.projectID) + ',' + JSON.stringify(content.datasetName) + ',' + JSON.stringify(content.tokenWithWriteAccess) + ')';
         console.log(script)
         return script
