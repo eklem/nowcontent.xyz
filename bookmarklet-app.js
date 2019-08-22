@@ -129,14 +129,14 @@ let bookmarklets = new Vue({
           let endpointUrl = 'https://' + projectID + '.api.sanity.io/v1/data/mutate/' + datasetName;
           let bearerToken = 'Bearer ' + tokenWithWriteAccess;
           
-          const mutations = [{
+          const mutations = JSON.stringify([{
             createOrReplace: {
-              '_id': url,
-              'url': url,
-              'title': title,
-              'body': body
+              _id: url,
+              url: url,
+              title: title,
+              body: body
             }
-          }];
+          }]);
           fetch(endpointUrl, {
             method: 'post',
             headers: {
