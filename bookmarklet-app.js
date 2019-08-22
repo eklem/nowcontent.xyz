@@ -94,6 +94,25 @@ let bookmarklets = new Vue({
       console.log('index: ' + index + ' ID: ' + id + ' Service name: ' + serviceName + ' content: ' + JSON.stringify(content))
       if (serviceName === 'JSONbin.io') {
         console.log('Hello ' + serviceName + ' - ID: ' + id)
+        let script = 'javascript: (' + function(collectionID, secretKey) {
+          var url = window.location.href;
+          var title = document.title;
+          var body = document.body.innerText;
+          var req = new XMLHttpRequest();
+          req.onreadystatechange = () => {
+            if (req.readyState == XMLHttpRequest.DONE) {
+              console.log(req.responseText);
+            }
+          };
+          req.open('POST', 'https://api.jsonbin.io/b', true);
+          req.setRequestHeader('Content-Type', 'application/json');
+          req.setRequestHeader('secret-key', secretKey);
+          req.setRequestHeader('collection-id', collectionID);
+          var sendObj = JSON.stringify({'url': url, 'title': title, 'body': body});
+          req.send(sendObj);
+        } + ')(' + JSON.stringify(content.collectionID) + ',' + JSON.stringify(content.secretKey) + ')';
+        console.log(script)
+        return script
       }
       else if (serviceName === 'Sanity.io') {
         console.log('Hello ' + serviceName + ' - ID: ' + id)
