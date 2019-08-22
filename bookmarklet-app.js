@@ -117,14 +117,15 @@ let bookmarklets = new Vue({
       else if (serviceName === 'Sanity.io') {
         console.log('Hello ' + serviceName + ' - ID: ' + id)
         let script = 'javascript: (' + function(projectID, datasetName, tokenWithWriteAccess) {
-          var url = window.location.href;
-          var title = document.title;
-          var body = document.body.innerText;
+          let url = window.location.href;
+          let id = this.hashCode(JSON.stringify(url))
+          let title = document.title;
+          let body = document.body.innerText;
           let endpointUrl = 'https://' + projectID + '.api.sanity.io/v1/data/mutate/' + datasetName;
           let bearerToken = 'Bearer ' + tokenWithWriteAccess;
           const sendObj  = JSON.stringify({mutations: [{
             createOrReplace: {
-              _id: url,
+              _id: id,
               url: url,
               title: title,
               body: body
