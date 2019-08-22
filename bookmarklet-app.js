@@ -4,12 +4,6 @@ function getDefaultData() {
   db.version(1).stores({
     services: 'id,value'
   })
-  // Script objects for Bookmarklet scripts
-  scripts = {
-    'jsonbinio': '',
-    'sanityio': '',
-    'zapiercom': ''
-  }
   // Array to hold stuff read from DB
   services  = []
   // Temporary object to put to DB
@@ -72,7 +66,6 @@ function getDefaultData() {
   ]
   return { 
     db,
-    scripts,
     services,
     servicesTemp,
     serviceTemplates
@@ -89,9 +82,53 @@ let bookmarklets = new Vue({
         return db.services.toArray()
       }).then(function(services) {
         bookmarklets.services = stringParse(services)
+        console.log(JSON.stringify(bookmarklets.services))
       }).catch(function(error) {
         console.error(error)
       })
+    },
+
+    // Bookmarklet JavaScript generating
+    // Stitching together embedded scripts for the bookmarklets
+    generateScript: function(index, id, serviceName, content) {
+      console.log('index: ' + index + ' ID: ' + id + ' Service name: ' + serviceName + ' content: ' + JSON.stringify(content))
+      if (serviceName === 'JSONbin.io') {
+        console.log('Hello ' + serviceName + ' - ID: ' + id)
+      }
+      else if (serviceName === 'Sanity.io') {
+        console.log('Hello ' + serviceName + ' - ID: ' + id)
+      }
+      else if (serviceName === 'Zapier.com') {
+        console.log('Hello ' + serviceName + ' - ID: ' + id)
+        let script = 'javascript: (' + function(webhook) {
+          var iframe = document.createElement('iframe');
+          iframe.name = 'response';
+          iframe.style.visibility = 'hidden';
+          document.body.appendChild(iframe);
+          var form = document.createElement('form');
+          form.style.visibility = 'hidden';
+          form.method = 'post';
+          form.action = webhook;
+          form.target = 'response';
+          input_url = document.createElement('input');
+          input_url.name = 'url';
+          input_url.value = window.location.href;
+          form.appendChild(input_url);
+          input_title = document.createElement('input');
+          input_title.name = 'title';
+          input_title.value = document.title;
+          form.appendChild(input_title);
+          input_body = document.createElement('input');
+          input_body.name = 'body';
+          console.dir(document.body.innerText);
+          input_body.value = document.body.innerText;
+          form.appendChild(input_body);
+          document.body.appendChild(form);
+          form.submit();
+        } + ')(' + JSON.stringify(content.webhook) + ')';
+        console.log(script)
+        return script
+      }
     },
 
     // WRITE when user wants to create new or edit old
@@ -126,44 +163,6 @@ let bookmarklets = new Vue({
 
       // Clean up data
       this.resetData()
-    },
-    generateScript: function(serviceName, id) {
-      if (serviceName === 'JSONbin.io') {
-        console.log('Hello ' + serviceName + ' - ID: ' + id)
-      }
-      else if (serviceName === 'Sanity.io') {
-        console.log('Hello ' + serviceName + ' - ID: ' + id)
-      }
-      else if (serviceName === 'Zapier.com') {
-        console.log('Hello ' + serviceName + ' - ID: ' + id)
-        var WEBHOOK = 'https://hooks.zapier.com/hooks/catch/204265/1p9m8u/'
-        return this.scripts.zapiercom = 'javascript: (' + function(webhook) {
-          var iframe = document.createElement('iframe');
-          iframe.name = 'response';
-          iframe.style.visibility = 'hidden';
-          document.body.appendChild(iframe);
-          var form = document.createElement('form');
-          form.style.visibility = 'hidden';
-          form.method = 'post';
-          form.action = webhook;
-          form.target = 'response';
-          input_url = document.createElement('input');
-          input_url.name = 'url';
-          input_url.value = window.location.href;
-          form.appendChild(input_url);
-          input_title = document.createElement('input');
-          input_title.name = 'title';
-          input_title.value = document.title;
-          form.appendChild(input_title);
-          input_body = document.createElement("input");
-          input_body.name = 'body';
-          console.dir(document.body.innerText);
-          input_body.value = document.body.innerText;
-          form.appendChild(input_body);
-          document.body.appendChild(form);
-          form.submit();
-        } + ')(' + JSON.stringify(WEBHOOK) + ')';
-      }
     },
 
     // Delete ID
@@ -216,11 +215,4 @@ const stringParse = function(array){
     array[i].content = JSON.parse(array[i].content)
   }
   return array
-}
-
-// Bookmarklet JavaScript generating
-// Stitching together embedded scripts for the bookmarklets
-const zapierScript = function(template) {
-  const bookmarklet = ''
-  return bookmarklet
 }

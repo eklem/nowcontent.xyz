@@ -28,8 +28,8 @@
         </div>
       </template>
       <h2>Bookmarklets for endpoints added</h2>
-      <ul v-for="service in services">
-        <li>{{service.id}} - {{service.content}} - <a v-bind:href="generateScript(service.content.serviceName, service.id)">{{service.content.name}}</a></li>
+      <ul v-for="(service, index) in services">
+        <li>{{service.id}} - {{service.content}} - <a v-bind:href="generateScript(index, service.id, service.content.serviceName, service.content)">{{service.content.name}}</a></li>
       </ul>
       
       <h2>All services array</h2>
