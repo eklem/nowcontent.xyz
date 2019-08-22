@@ -45,7 +45,7 @@ function getDefaultData() {
           label: 'dataset_name'
         },
         {
-          type: 'tokenwithWriteAccess',
+          type: 'tokenWithWriteAccess',
           value: '',
           label: 'token_with_write_access'
         }
@@ -133,7 +133,7 @@ let bookmarklets = new Vue({
           req.setRequestHeader('Authorization', bearerToken);
           var sendObj = JSON.stringify([{ createOrReplace: { '_id': url, 'title': title, 'body': body } }]);
           req.send(sendObj);
-        } + ')(' + JSON.stringify(content.projectID) + ',' + JSON.stringify(content.datasetName) +',' + JSON.stringify(content.tokenWithWriteAccess) + ')';
+        } + ')(' + JSON.stringify(content.projectID) + ',' + JSON.stringify(content.datasetName) + ',' + JSON.stringify(content.tokenWithWriteAccess) + ')';
         console.log(script)
         return script
       }
