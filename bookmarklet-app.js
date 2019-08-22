@@ -127,6 +127,7 @@ let bookmarklets = new Vue({
           const sendObj  = JSON.stringify({mutations: [{
             createOrReplace: {
               _id: id,
+              _type: 'document',
               url: url,
               title: title,
               body: body
