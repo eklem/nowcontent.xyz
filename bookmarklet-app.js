@@ -120,15 +120,8 @@ let bookmarklets = new Vue({
           var url = window.location.href;
           var title = document.title;
           var body = document.body.innerText;
-          var req = new XMLHttpRequest();
-          req.onreadystatechange = () => {
-            if (req.readyState == XMLHttpRequest.DONE) {
-              console.log(req.responseText);
-            }
-          };
           let endpointUrl = 'https://' + projectID + '.api.sanity.io/v1/data/mutate/' + datasetName;
           let bearerToken = 'Bearer ' + tokenWithWriteAccess;
-          
           const mutations = JSON.stringify([{
             createOrReplace: {
               _id: url,
