@@ -122,22 +122,22 @@ let bookmarklets = new Vue({
           var body = document.body.innerText;
           let endpointUrl = 'https://' + projectID + '.api.sanity.io/v1/data/mutate/' + datasetName;
           let bearerToken = 'Bearer ' + tokenWithWriteAccess;
-          const mutations = JSON.stringify([{
+          const sendObj  = JSON.stringify({mutations: [{
             createOrReplace: {
               _id: url,
               url: url,
               title: title,
               body: body
             }
-          }]);
-          console.log(mutations);
+          }]});
+          console.log(sendObj);
           fetch(endpointUrl, {
             method: 'post',
             headers: {
               'Content-type': 'application/json',
               'Authorization': bearerToken
             },
-            body: mutations
+            body: sendObj
           })
             .then(response => response.json())
             .then(result => console.log(result))
