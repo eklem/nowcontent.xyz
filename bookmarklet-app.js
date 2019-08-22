@@ -118,7 +118,7 @@ let bookmarklets = new Vue({
         console.log('Hello ' + serviceName + ' - ID: ' + id)
         let script = 'javascript: (' + function(projectID, datasetName, tokenWithWriteAccess) {
           let url = window.location.href;
-          let id = this.hashCode(JSON.stringify(url))
+          let id = this.hashCode(JSON.stringify(url));
           let title = document.title;
           let body = document.body.innerText;
           let endpointUrl = 'https://' + projectID + '.api.sanity.io/v1/data/mutate/' + datasetName;
