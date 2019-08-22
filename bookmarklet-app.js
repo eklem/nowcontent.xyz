@@ -131,7 +131,7 @@ let bookmarklets = new Vue({
           req.open('POST', endpointUrl, true);
           req.setRequestHeader('Content-Type', 'application/json');
           req.setRequestHeader('Authorization', bearerToken);
-          var sendObj = JSON.stringify([{ createOrReplace: { '_id': url, 'title': title, 'body': body } }]);
+          var sendObj = [{ createOrReplace: { '_id': url, 'title': title, 'body': body } }];
           req.send(sendObj);
         } + ')(' + JSON.stringify(content.projectID) + ',' + JSON.stringify(content.datasetName) + ',' + JSON.stringify(content.tokenWithWriteAccess) + ')';
         console.log(script)
