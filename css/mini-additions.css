@@ -78,3 +78,6 @@ h1, h2, h3, h4, h5, h6 {
 #dialogue .icon-cancel {
   cursor:pointer;
 }
+a:link.thrash, a:visited.thrash {
+  color:#3d3d3d;
+}

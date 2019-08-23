@@ -43,7 +43,7 @@
           </div>
         </div>
         <div id="bookmars" v-for="(service, index) in services">
-            <a href="#" v-on:click="deleteFromDB(service.id)"><i class="demo-icon icon-trash"></i></a><a class="button default" v-bind:href="generateScript(index, service.id, service.content.serviceName, service.content)"><i class="icon-bookmark"></i>{{service.content.name}}</a>
+            <a href="#" v-on:click="deleteFromDB(service.id)" class="thrash"><i class="icon-trash"></i></a><a class="button default" v-bind:href="generateScript(index, service.id, service.content.serviceName, service.content)"><i class="icon-bookmark"></i>{{service.content.name}}</a>
         </div>
       </div>
     </div>
