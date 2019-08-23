@@ -160,14 +160,13 @@ let bookmarklets = new Vue({
           var url = window.location.href;
           var title = document.title;
           var body = document.body.innerText;
-          var sendObj = JSON.stringify({'url': url, 'title': title, 'body': body});
+          var sendObj = {'url': url, 'title': title, 'body': body};
           fetch(webhook, {
             method: 'post',
             headers: {
-              'content-type': 'application/json'
+              'Content-type': 'application/json',
             },
-            credentials: 'same-origin',
-            body: sendObj
+            body: sendObj,
           })
             .then(response => response.json())
             .then(result => alert('Content added to Zapier.com\nWebhook: ' + webhook + '\n\n' + result))
