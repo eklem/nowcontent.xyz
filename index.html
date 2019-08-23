@@ -2,38 +2,44 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Nowcontent.xyz</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nowcontent.xyz - Bookmarklets for sending content / pages to [xyz]</title>
+    <link rel="stylesheet" href="https://gitcdn.link/repo/Chalarangelo/mini.css/master/dist/mini-default.min.css">
+    <link rel="stylesheet" href="mini-additions.css">
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
     <div id="bookmarklets">
-      <h1>Nowcontent.xyz - Bookmarklets</h1>
-      Bookmarklets for adding the content of a page to any service.
-      <h2>Where to send data</h2>
-      <div v-for="(serviceTemplate, index) in serviceTemplates">
-        <input type="radio" name="service" :value="index"  v-on:click="showService(index)">
-        {{ serviceTemplate.serviceName }}
+      <div id="header">
+        <img id="logo" src="./logo-nowcontent.xyz.png">
       </div>
-      <h2>Bookmarklet name</h2>
-      <template v-for="(serviceTemplate, index) in serviceTemplates">
-          <div v-show="serviceTemplate.show">
-          <input type="text" placeholder="bookmarklet name" v-model="serviceTemplate.name">
-          <div v-for="inputElement in serviceTemplate.content ">
-            {{inputElement.label}}
-            <input type="text" :placeholder="inputElement.label" v-model="inputElement.value">
-          </div>
-          <button v-on:click="addBookmarklet(index)">Add</button>
+      <div id="content">
+        Bookmarklets for adding the content of a page to any service.
+        <h2>Where to send data</h2>
+        <div v-for="(serviceTemplate, index) in serviceTemplates">
+          <input type="radio" name="service" :value="index"  v-on:click="showService(index)">
+          {{ serviceTemplate.serviceName }}
         </div>
-      </template>
-      <h2>Bookmarklets for endpoints added</h2>
-      <ul v-for="(service, index) in services">
-        <li>{{service.id}} - {{service.content}} - <a v-bind:href="generateScript(index, service.id, service.content.serviceName, service.content)">{{service.content.name}}</a></li>
-      </ul>
-      
-      <!-- <h2>All services array</h2>
-      <pre>{{services}}</pre> -->
+        <h2>Bookmarklet name</h2>
+        <template v-for="(serviceTemplate, index) in serviceTemplates">
+            <div v-show="serviceTemplate.show">
+            <input type="text" placeholder="bookmarklet name" v-model="serviceTemplate.name">
+            <div v-for="inputElement in serviceTemplate.content ">
+              {{inputElement.label}}
+              <input type="text" :placeholder="inputElement.label" v-model="inputElement.value">
+            </div>
+            <button v-on:click="addBookmarklet(index)">Add</button>
+          </div>
+        </template>
+        <h2>Bookmarklets for endpoints added</h2>
+        <ul v-for="(service, index) in services">
+          <li>{{service.id}} - {{service.content}} - <a v-bind:href="generateScript(index, service.id, service.content.serviceName, service.content)">{{service.content.name}}</a></li>
+        </ul>
+        
+        <!-- <h2>All services array</h2>
+        <pre>{{services}}</pre> -->
+      </div>
     </div>
     <script src="./bookmarklet-app.js"></script>
   </body>

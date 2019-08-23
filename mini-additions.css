@@ -1,0 +1,23 @@
+body {
+  background:#cccccc;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin-left:0;
+}
+#header {
+  background:#dddddd;
+  overflow:visible;
+  z-index:10;
+  position: absolute;
+  width:100%;
+  height:83px;
+}
+#logo {
+  width:300px;
+  position:relative;
+  left:20px;
+  bottom: -18px;
+}
+#content {
+  padding:110px 20px 20px 112px;
+}
