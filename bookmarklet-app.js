@@ -147,7 +147,7 @@ let bookmarklets = new Vue({
           })
             .then(response => response.json())
             .then(result => alert('Content added to Sanity.io\nProject: ' + projectID + ' - Dataset: ' + datasetName))
-            .catch(error => alert(error));
+            .catch(error => alert('Adding content failed.\nIs the bookmarklet set up right?\n\n' + error));
         } + ')(' + JSON.stringify(content.projectID) + ',' + JSON.stringify(content.datasetName) + ',' + JSON.stringify(content.tokenWithWriteAccess) + ')';
         console.log(script)
         return script
