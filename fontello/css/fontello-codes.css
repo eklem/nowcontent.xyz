@@ -1,0 +1,6 @@
+
+.icon-cancel:before { content: '\e800'; } /* '' */
+.icon-floppy:before { content: '\e801'; } /* '' */
+.icon-bookmark:before { content: '\e802'; } /* '' */
+.icon-menu:before { content: '\f0c9'; } /* '' */
+.icon-trash:before { content: '\f1f8'; } /* '' */

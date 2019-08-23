@@ -4,6 +4,8 @@ function getDefaultData() {
   db.version(1).stores({
     services: 'id,value'
   })
+  // Modal for adding a bookmarklet
+  modal = {show: false}
   // Array to hold stuff read from DB
   services  = []
   // Temporary object to put to DB
@@ -20,12 +22,12 @@ function getDefaultData() {
         {
           type: 'secretKey',
           value: '',
-          label: 'secret_key'
+          label: 'Secret key'
         },
         {
           type: 'collectionID',
           value: '',
-          label: 'collection_id'
+          label: 'Collection ID'
         }
       ]
     },
@@ -37,17 +39,17 @@ function getDefaultData() {
         {
           type: 'projectID',
           value: '',
-          label: 'project_id'
+          label: 'Project ID'
         },
         {
           type: 'datasetName',
           value: '',
-          label: 'dataset_name'
+          label: 'Dataset name'
         },
         {
           type: 'tokenWithWriteAccess',
           value: '',
-          label: 'token_with_write_access'
+          label: 'Token with write access'
         }
       ]
     },
@@ -66,6 +68,7 @@ function getDefaultData() {
   ]
   return { 
     db,
+    modal,
     services,
     servicesTemp,
     serviceTemplates
@@ -218,9 +221,16 @@ let bookmarklets = new Vue({
 
     // Delete ID
     // Fire off a READ at the end
-    deleteFromDB: function(id) {
+    deleteFromDB: function(primaryKey) {
+      Dexie.debug = true
       console.log('Deleting from DB')
-      readFromDB()
+      db.services.delete(primaryKey).then(() => {
+        console.log("Bookmarkleet successfully deleted");
+      }).catch((err) => {
+          console.error("Could not delete bookmarklet");
+      }).finally(() => {
+        this.resetData()
+      });
     },
 
     // Show edit mode for ID and hide view mode
@@ -246,6 +256,9 @@ let bookmarklets = new Vue({
         serviceTemplates[i].show = false
       }
       serviceTemplates[index].show = true
+    },
+    showModal: function(show) {
+      modal.show = show
     }
   },
   mounted: function() {

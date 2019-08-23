@@ -5,36 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Nowcontent.xyz - Create bookmarklets for sending content / pages to service [xyz]</title>
     <link rel="stylesheet" href="https://gitcdn.link/repo/Chalarangelo/mini.css/master/dist/mini-default.min.css">
-    <link rel="stylesheet" href="mini-additions.css">
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="./css/mini-additions.css">
+    <link rel="stylesheet" href="./fontello/css/fontello.css">
   </head>
   <body>
     <div id="bookmarklets">
       <div id="header">
-        <img id="logo" src="./logo-nowcontent.xyz.png">
+        <img id="logo" src="./img/logo-nowcontent.xyz.png">
       </div>
       <div id="content">
         <div id="payoff">Create bookmarklets for sending content / pages to service [xyz]</div>
-        <h2>Where to send data</h2>
-        <div v-for="(serviceTemplate, index) in serviceTemplates">
-          <input type="radio" name="service" :value="index"  v-on:click="showService(index)">
-          {{ serviceTemplate.serviceName }}
-        </div>
-        <template v-for="(serviceTemplate, index) in serviceTemplates">
-            <div v-show="serviceTemplate.show">
-            <h2>Bookmarklet name</h2>
-            <input type="text" placeholder="bookmarklet name" v-model="serviceTemplate.name">
-            <div v-for="inputElement in serviceTemplate.content ">
-              {{inputElement.label}}
-              <input type="text" :placeholder="inputElement.label" v-model="inputElement.value">
+        <a id="addShow" href="#" v-on:click="showModal(true)"><img src="./img/button-add.png">Add content endpoint</a>
+        <div id="modal" v-show="modal.show">
+          <div id="dialogue">
+            <i class="icon-cancel close" v-on:click="showModal(false)"></i>
+            <h2>Where to send data</h2>
+            <div v-for="(serviceTemplate, index) in serviceTemplates">
+              <input type="radio" name="service" :value="index"  v-on:click="showService(index)">
+              {{ serviceTemplate.serviceName }}
             </div>
-            <button class="primary" v-on:click="addBookmarklet(index)">Add</button>
+            <template v-for="(serviceTemplate, index) in serviceTemplates">
+                <div v-show="serviceTemplate.show">
+                <h2>Bookmarklet name</h2>
+                <input type="text" placeholder="bookmarklet name" v-model="serviceTemplate.name">
+                <div v-for="inputElement in serviceTemplate.content ">
+                  {{inputElement.label}}
+                  <input type="text" :placeholder="inputElement.label" v-model="inputElement.value">
+                </div>
+                <div id="buttonRow">
+                  <button class="primary" v-on:click="addBookmarklet(index)"><i class="icon-floppy"></i>Add</button>
+                  <button class="default" v-on:click="showModal(false)"><i class="icon-cancel"></i>Cancel</button>
+                </div>
+              </div>
+            </template>
           </div>
-        </template>
-        <h2>Bookmarklets for endpoints added</h2>
+        </div>
         <div id="bookmars" v-for="(service, index) in services">
-          <a class="button default" v-bind:href="generateScript(index, service.id, service.content.serviceName, service.content)">{{service.content.name}}</a>
+            <a href="#" v-on:click="deleteFromDB(service.id)"><i class="demo-icon icon-trash"></i></a><a class="button default" v-bind:href="generateScript(index, service.id, service.content.serviceName, service.content)"><i class="icon-bookmark"></i>{{service.content.name}}</a>
         </div>
       </div>
     </div>
