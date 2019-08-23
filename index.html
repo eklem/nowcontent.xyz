@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nowcontent.xyz - Bookmarklets for sending content / pages to [xyz]</title>
+    <title>Nowcontent.xyz - Bookmarklets for sending content / pages to service [xyz]</title>
     <link rel="stylesheet" href="https://gitcdn.link/repo/Chalarangelo/mini.css/master/dist/mini-default.min.css">
     <link rel="stylesheet" href="mini-additions.css">
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
@@ -29,16 +29,13 @@
               {{inputElement.label}}
               <input type="text" :placeholder="inputElement.label" v-model="inputElement.value">
             </div>
-            <button v-on:click="addBookmarklet(index)">Add</button>
+            <button class="primary" v-on:click="addBookmarklet(index)">Add</button>
           </div>
         </template>
         <h2>Bookmarklets for endpoints added</h2>
         <ul v-for="(service, index) in services">
           <li>{{service.id}} - {{service.content}} - <a v-bind:href="generateScript(index, service.id, service.content.serviceName, service.content)">{{service.content.name}}</a></li>
         </ul>
-        
-        <!-- <h2>All services array</h2>
-        <pre>{{services}}</pre> -->
       </div>
     </div>
     <script src="./bookmarklet-app.js"></script>

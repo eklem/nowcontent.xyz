@@ -21,3 +21,7 @@ h1, h2, h3, h4, h5, h6 {
 #content {
   padding:110px 20px 20px 112px;
 }
+.primary {
+  color:#3d3d3d;
+  background:#ffffaa;
+}
