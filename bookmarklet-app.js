@@ -160,7 +160,7 @@ let bookmarklets = new Vue({
           var url = window.location.href;
           var title = document.title;
           var body = document.body.innerText;
-          var sendObj = {'url': url, 'title': title, 'body': body};
+          var sendObj = JSON.stringify({'url': url, 'title': title, 'body': body});
           fetch(webhook, {
             method: 'post',
             body: sendObj,
@@ -172,37 +172,37 @@ let bookmarklets = new Vue({
         console.log(script)
         return script
       }
-      else if (serviceName === 'zap-copy') {
-        console.log('Hello ' + serviceName + ' - ID: ' + id)
-        let script = 'javascript: (' + function(webhook) {
-          var iframe = document.createElement('iframe');
-          iframe.name = 'response';
-          iframe.style.visibility = 'hidden';
-          document.body.appendChild(iframe);
-          var form = document.createElement('form');
-          form.style.visibility = 'hidden';
-          form.method = 'post';
-          form.action = webhook;
-          form.target = 'response';
-          input_url = document.createElement('input');
-          input_url.name = 'url';
-          input_url.value = window.location.href;
-          form.appendChild(input_url);
-          input_title = document.createElement('input');
-          input_title.name = 'title';
-          input_title.value = document.title;
-          form.appendChild(input_title);
-          input_body = document.createElement('input');
-          input_body.name = 'body';
-          console.dir(document.body.innerText);
-          input_body.value = document.body.innerText;
-          form.appendChild(input_body);
-          document.body.appendChild(form);
-          form.submit();
-        } + ')(' + JSON.stringify(content.webhook) + ')';
-        console.log(script)
-        return script
-      }
+      // else if (serviceName === 'zap-copy') {
+      //   console.log('Hello ' + serviceName + ' - ID: ' + id)
+      //   let script = 'javascript: (' + function(webhook) {
+      //     var iframe = document.createElement('iframe');
+      //     iframe.name = 'response';
+      //     iframe.style.visibility = 'hidden';
+      //     document.body.appendChild(iframe);
+      //     var form = document.createElement('form');
+      //     form.style.visibility = 'hidden';
+      //     form.method = 'post';
+      //     form.action = webhook;
+      //     form.target = 'response';
+      //     input_url = document.createElement('input');
+      //     input_url.name = 'url';
+      //     input_url.value = window.location.href;
+      //     form.appendChild(input_url);
+      //     input_title = document.createElement('input');
+      //     input_title.name = 'title';
+      //     input_title.value = document.title;
+      //     form.appendChild(input_title);
+      //     input_body = document.createElement('input');
+      //     input_body.name = 'body';
+      //     console.dir(document.body.innerText);
+      //     input_body.value = document.body.innerText;
+      //     form.appendChild(input_body);
+      //     document.body.appendChild(form);
+      //     form.submit();
+      //   } + ')(' + JSON.stringify(content.webhook) + ')';
+      //   console.log(script)
+      //   return script
+      // }
     },
 
     // WRITE when user wants to create new or edit old
