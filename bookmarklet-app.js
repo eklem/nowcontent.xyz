@@ -113,7 +113,7 @@ let bookmarklets = new Vue({
             body: sendObj
           })
             .then(response => response.json())
-            .then(result => alert('Content added to JSONbin.io\nCollection: ' + collectionID))
+            .then(result => alert('Content added to JSONbin.io\nCollection: ' + collectionID + '\n\n' + result))
             .catch(error => alert('Adding content failed.\nIs the bookmarklet set up right?\n\n' + error));
         } + ')(' + JSON.stringify(content.collectionID) + ',' + JSON.stringify(content.secretKey) + ')';
         console.log(script)
@@ -148,7 +148,7 @@ let bookmarklets = new Vue({
             body: sendObj
           })
             .then(response => response.json())
-            .then(result => alert('Content added to Sanity.io\nProject: ' + projectID + ' - Dataset: ' + datasetName))
+            .then(result => alert('Content added to Sanity.io\nProject: ' + projectID + ' - Dataset: ' + datasetName + '\n\n' + result))
             .catch(error => alert('Adding content failed.\nIs the bookmarklet set up right?\n\n' + error));
         } + ')(' + JSON.stringify(content.projectID) + ',' + JSON.stringify(content.datasetName) + ',' + JSON.stringify(content.tokenWithWriteAccess) + ')';
         console.log(script)
@@ -166,10 +166,11 @@ let bookmarklets = new Vue({
             headers: {
               'Content-type': 'application/json'
             },
+            credentials: 'same-origin',
             body: sendObj
           })
             .then(response => response.json())
-            .then(result => alert('Content added to Zapier.com\nWebhook: ' + webhook))
+            .then(result => alert('Content added to Zapier.com\nWebhook: ' + webhook + '\n\n' + result))
             .catch(error => alert('Adding content failed.\nIs the bookmarklet set up right?\n\n' + error));
         } + ')(' + JSON.stringify(content.webhook) + ')';
         console.log(script)
