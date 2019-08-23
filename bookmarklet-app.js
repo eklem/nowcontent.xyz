@@ -101,18 +101,20 @@ let bookmarklets = new Vue({
           var url = window.location.href;
           var title = document.title;
           var body = document.body.innerText;
-          var req = new XMLHttpRequest();
-          req.onreadystatechange = () => {
-            if (req.readyState == XMLHttpRequest.DONE) {
-              console.log(req.responseText);
-            }
-          };
-          req.open('POST', 'https://api.jsonbin.io/b', true);
-          req.setRequestHeader('Content-Type', 'application/json');
-          req.setRequestHeader('secret-key', secretKey);
-          req.setRequestHeader('collection-id', collectionID);
+          var endpointUrl = 'https://api.jsonbin.io/b';
           var sendObj = JSON.stringify({'url': url, 'title': title, 'body': body});
-          req.send(sendObj);
+          fetch(endpointUrl, {
+            method: 'post',
+            headers: {
+              'Content-type': 'application/json',
+              'secret-key': secretKey,
+              'collection-id': collectionID
+            },
+            body: sendObj
+          })
+            .then(response => response.json())
+            .then(result => alert('Content added to JSONbin.io\nCollection: ' + collectionID))
+            .catch(error => alert('Adding content failed.\nIs the bookmarklet set up right?\n\n' + error));
         } + ')(' + JSON.stringify(content.collectionID) + ',' + JSON.stringify(content.secretKey) + ')';
         console.log(script)
         return script
