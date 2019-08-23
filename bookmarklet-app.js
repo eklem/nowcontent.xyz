@@ -95,8 +95,8 @@ let bookmarklets = new Vue({
     // Stitching together embedded scripts for the bookmarklets
     generateScript: function(index, id, serviceName, content) {
       console.log('index: ' + index + ' ID: ' + id + ' Service name: ' + serviceName + ' content: ' + JSON.stringify(content))
+      // JSONbin.io endpoint script
       if (serviceName === 'JSONbin.io') {
-        console.log('Hello ' + serviceName + ' - ID: ' + id)
         let script = 'javascript: (' + function(collectionID, secretKey) {
           var url = window.location.href;
           var title = document.title;
@@ -116,11 +116,10 @@ let bookmarklets = new Vue({
             .then(result => alert('Content added to JSONbin.io\nCollection: ' + collectionID + '\n\n' + result))
             .catch(error => alert('Adding content failed.\nIs the bookmarklet set up right?\n\n' + error));
         } + ')(' + JSON.stringify(content.collectionID) + ',' + JSON.stringify(content.secretKey) + ')';
-        console.log(script)
         return script
       }
+      // Sanity.io endpoint script
       else if (serviceName === 'Sanity.io') {
-        console.log('Hello ' + serviceName + ' - ID: ' + id)
         let script = 'javascript: (' + function(projectID, datasetName, tokenWithWriteAccess) {
           let url = window.location.href;
           let id = url.split('').reduce((prevHash, currVal) =>
@@ -138,7 +137,6 @@ let bookmarklets = new Vue({
               body: body
             }
           }]});
-          console.log(sendObj);
           fetch(endpointUrl, {
             method: 'post',
             headers: {
@@ -151,11 +149,10 @@ let bookmarklets = new Vue({
             .then(result => alert('Content added to Sanity.io\nProject: ' + projectID + ' - Dataset: ' + datasetName + '\n\n' + result))
             .catch(error => alert('Adding content failed.\nIs the bookmarklet set up right?\n\n' + error));
         } + ')(' + JSON.stringify(content.projectID) + ',' + JSON.stringify(content.datasetName) + ',' + JSON.stringify(content.tokenWithWriteAccess) + ')';
-        console.log(script)
         return script
       }
+      // Zapier.com endpoint script
       else if (serviceName === 'Zapier.com') {
-        console.log('Hello ' + serviceName + ' - ID: ' + id)
         let script = 'javascript: (' + function(webhook) {
           var url = window.location.href;
           var title = document.title;
@@ -166,43 +163,11 @@ let bookmarklets = new Vue({
             body: sendObj,
           })
             .then(response => response.json())
-            .then(result => alert('Content added to Zapier.com\nWebhook: ' + webhook + '\n\n' + result))
+            .then(result => alert('Content added to Zapier.com\nWebhook: ' + webhook + '\n\n' + JSON.stringify(result)))
             .catch(error => alert('Adding content failed.\nIs the bookmarklet set up right?\n\n' + error));
         } + ')(' + JSON.stringify(content.webhook) + ')';
-        console.log(script)
         return script
       }
-      // else if (serviceName === 'zap-copy') {
-      //   console.log('Hello ' + serviceName + ' - ID: ' + id)
-      //   let script = 'javascript: (' + function(webhook) {
-      //     var iframe = document.createElement('iframe');
-      //     iframe.name = 'response';
-      //     iframe.style.visibility = 'hidden';
-      //     document.body.appendChild(iframe);
-      //     var form = document.createElement('form');
-      //     form.style.visibility = 'hidden';
-      //     form.method = 'post';
-      //     form.action = webhook;
-      //     form.target = 'response';
-      //     input_url = document.createElement('input');
-      //     input_url.name = 'url';
-      //     input_url.value = window.location.href;
-      //     form.appendChild(input_url);
-      //     input_title = document.createElement('input');
-      //     input_title.name = 'title';
-      //     input_title.value = document.title;
-      //     form.appendChild(input_title);
-      //     input_body = document.createElement('input');
-      //     input_body.name = 'body';
-      //     console.dir(document.body.innerText);
-      //     input_body.value = document.body.innerText;
-      //     form.appendChild(input_body);
-      //     document.body.appendChild(form);
-      //     form.submit();
-      //   } + ')(' + JSON.stringify(content.webhook) + ')';
-      //   console.log(script)
-      //   return script
-      // }
     },
 
     // WRITE when user wants to create new or edit old
