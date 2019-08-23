@@ -157,6 +157,27 @@ let bookmarklets = new Vue({
       else if (serviceName === 'Zapier.com') {
         console.log('Hello ' + serviceName + ' - ID: ' + id)
         let script = 'javascript: (' + function(webhook) {
+          var url = window.location.href;
+          var title = document.title;
+          var body = document.body.innerText;
+          var sendObj = JSON.stringify({'url': url, 'title': title, 'body': body});
+          fetch(webhook, {
+            method: 'post',
+            headers: {
+              'Content-type': 'application/json'
+            },
+            body: sendObj
+          })
+            .then(response => response.json())
+            .then(result => alert('Content added to Zapier.com\nWebhook: ' + webhook))
+            .catch(error => alert('Adding content failed.\nIs the bookmarklet set up right?\n\n' + error));
+        } + ')(' + JSON.stringify(content.webhook) + ')';
+        console.log(script)
+        return script
+      }
+      else if (serviceName === 'zap-copy') {
+        console.log('Hello ' + serviceName + ' - ID: ' + id)
+        let script = 'javascript: (' + function(webhook) {
           var iframe = document.createElement('iframe');
           iframe.name = 'response';
           iframe.style.visibility = 'hidden';
