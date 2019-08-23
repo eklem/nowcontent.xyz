@@ -31,7 +31,7 @@ h1, h2, h3, h4, h5, h6 {
 #addShow {
   font-size:2rem;
   position:relative;
-  display:block;
+  display:inline-block;
 }
 #addShow img {
   width:50px;

@@ -203,7 +203,7 @@ let bookmarklets = new Vue({
         contentObj = {[key]: value}
         this.servicesTemp = {...this.servicesTemp, ...contentObj}
       }
-      hashedID = this.hashCode(JSON.stringify(this.servicesTemp))
+      hashedID = hashCode(JSON.stringify(this.servicesTemp))
       this.servicesTemp = {id: hashedID, content: JSON.stringify(this.servicesTemp)}
 
       // Put stuff to indexedDB
@@ -231,24 +231,10 @@ let bookmarklets = new Vue({
         this.resetData()
       });
     },
-
-    // Show edit mode for ID and hide view mode
-    showEdit: function(id) {
-      console.log('Show edit')
-    },
-
-    // Hide edit mode for ID and show view mode
-    hideEdit: function(id) {
-      console.log('Hide edit')
-    },
     resetData: function() {
       var def = getDefaultData()
       Object.assign(this.$data, def)
       this.readFromDB()
-    },
-    hashCode: function(str) {
-      return str.split('').reduce((prevHash, currVal) =>
-        (((prevHash << 5) - prevHash) + currVal.charCodeAt(0))|0, 0);
     },
     showService: function(index) {
       for (let i = 0; i < serviceTemplates.length; i++) {
@@ -268,6 +254,10 @@ let bookmarklets = new Vue({
 
 // Helper functions:
 // - ID hashing
+const hashCode = function(str){
+  return str.split('').reduce((prevHash, currVal) =>
+    (((prevHash << 5) - prevHash) + currVal.charCodeAt(0))|0, 0);
+}
 
 // - Stringify objects before storing
 
