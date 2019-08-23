@@ -163,9 +163,6 @@ let bookmarklets = new Vue({
           var sendObj = {'url': url, 'title': title, 'body': body};
           fetch(webhook, {
             method: 'post',
-            headers: {
-              'Content-type': 'application/json',
-            },
             body: sendObj,
           })
             .then(response => response.json())
