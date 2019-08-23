@@ -146,8 +146,8 @@ let bookmarklets = new Vue({
             body: sendObj
           })
             .then(response => response.json())
-            .then(result => console.log(result))
-            .catch(error => console.error(error));
+            .then(result => alert('Content added to Sanity.io\nProject: ' + projectID + ' - Dataset: ' + datasetName))
+            .catch(error => alert(error));
         } + ')(' + JSON.stringify(content.projectID) + ',' + JSON.stringify(content.datasetName) + ',' + JSON.stringify(content.tokenWithWriteAccess) + ')';
         console.log(script)
         return script
@@ -222,7 +222,6 @@ let bookmarklets = new Vue({
     // Delete ID
     // Fire off a READ at the end
     deleteFromDB: function(primaryKey) {
-      Dexie.debug = true
       console.log('Deleting from DB')
       db.services.delete(primaryKey).then(() => {
         console.log("Bookmarkleet successfully deleted");
