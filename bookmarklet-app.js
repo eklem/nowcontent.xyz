@@ -113,7 +113,14 @@ let bookmarklets = new Vue({
             body: sendObj
           })
             .then(response => response.json())
-            .then(result => alert('Content added to JSONbin.io\nCollection: ' + collectionID + '\n\n' + JSON.stringify(result)))
+            .then(result => {
+              if(result.success === false){
+                alert('Adding content failed.\nIs the bookmarklet set up right?\n\n' + JSON.stringify(result))
+              };
+              if(result.success === true) {
+                alert('Content added to JSONbin.io\nCollection: ' + collectionID + '\n\n' + JSON.stringify(result))
+              };
+            })
             .catch(error => alert('Adding content failed.\nIs the bookmarklet set up right?\n\n' + JSON.stringify(error)));
         } + ')(' + JSON.stringify(content.collectionID) + ',' + JSON.stringify(content.secretKey) + ')';
         return script
