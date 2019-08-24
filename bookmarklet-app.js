@@ -153,8 +153,8 @@ let bookmarklets = new Vue({
             body: sendObj
           })
             .then(response => response.json())
-            .then(result => alert('Content added to Sanity.io\nProject: ' + projectID + ' - Dataset: ' + datasetName + '\n\n' + result))
-            .catch(error => alert('Adding content failed.\nIs the bookmarklet set up right?\n\n' + error));
+            .then(result => alert('Content added to Sanity.io\nProject: ' + projectID + ' - Dataset: ' + datasetName + '\n\n' + JSON.stringify(result)))
+            .catch(error => alert('Adding content to Sanity.io failed.\nIs the bookmarklet set up right?\n\n' + error));
         } + ')(' + JSON.stringify(content.projectID) + ',' + JSON.stringify(content.datasetName) + ',' + JSON.stringify(content.tokenWithWriteAccess) + ')';
         return script
       }
