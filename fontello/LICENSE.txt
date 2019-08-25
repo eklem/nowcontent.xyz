@@ -6,8 +6,8 @@ Font license info
    Copyright (C) 2013 by Aristeides Stathopoulos
 
    Author:    Aristeides Stathopoulos
-   License:   SIL (https://scripts.sil.org/OFL)
-   Homepage:  https://aristeides.com/
+   License:   SIL (http://scripts.sil.org/OFL)
+   Homepage:  http://aristeides.com/
 
 
 ## Entypo
@@ -15,8 +15,8 @@ Font license info
    Copyright (C) 2012 by Daniel Bruce
 
    Author:    Daniel Bruce
-   License:   SIL (https://scripts.sil.org/OFL)
-   Homepage:  https://www.entypo.com
+   License:   SIL (http://scripts.sil.org/OFL)
+   Homepage:  http://www.entypo.com
 
 
 ## Font Awesome
@@ -25,6 +25,15 @@ Font license info
 
    Author:    Dave Gandy
    License:   SIL ()
-   Homepage:  https://fortawesome.github.com/Font-Awesome/
+   Homepage:  http://fortawesome.github.com/Font-Awesome/
+
+
+## MFG Labs
+
+   Copyright (C) 2012 by Daniel Bruce
+
+   Author:    MFG Labs
+   License:   SIL (http://scripts.sil.org/OFL)
+   Homepage:  http://www.mfglabs.com/
 
 

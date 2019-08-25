@@ -11,7 +11,7 @@ h1, h2, h3, h4, h5, h6 {
   background:#dddddd;
   overflow:visible;
   z-index:10;
-  position: absolute;
+  position: fixed;
   width:100%;
   height:83px;
 }
@@ -21,8 +21,28 @@ h1, h2, h3, h4, h5, h6 {
   left:20px;
   bottom: -18px;
 }
+#menu {
+  position:absolute;
+  right:0px;
+  bottom:0px;
+  width:100px;
+}
+#menu .icon-github-circled {
+  float:right;
+  font-size:xx-large;
+}
+#footer {
+  background:#dddddd;
+  padding:20px 20px 10px 20px;
+  z-index:10;
+  position:fixed;
+  width:100%;
+  left:0px;
+  bottom:0px;
+}
 #content {
   padding:90px 20px 20px 111px;
+  overflow:scroll;
 }
 #payoff {
   margin-bottom:30px;
@@ -39,12 +59,9 @@ h1, h2, h3, h4, h5, h6 {
   position:absolute;
   left:-60px;
 }
-.primary {
-  color:#3d3d3d;
-  background:#ffffaa;
-}
 #modal {
-  position:absolute;
+  position:fixed;
+  display:none;
   z-index:100;
   left:0;
   top:0;
@@ -75,9 +92,21 @@ h1, h2, h3, h4, h5, h6 {
 #buttonRow {
   margin-top:30px;
 }
+#buttonRow button.primary, #buttonRow button:visited.primary {
+  color:#3d3d3d;
+  background:#ffffaa;
+}
+#buttonRow button:hover.primary, #buttonRow button:active.primary {
+  color:#3d3d3d;
+  background:#ffc9ab;
+}
 #dialogue .icon-cancel {
   cursor:pointer;
 }
-a:link.thrash, a:visited.thrash {
+a:link.thrash, a:visited.thrash, a .icon-github-circled, a:visited .icon-github-circled {
   color:#3d3d3d;
 }
+a:hover.thrash, a:active.thrash, a:hover .icon-github-circled, a:active .icon-github-circled{
+  color:#522705;
+}
+
