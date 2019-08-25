@@ -13,9 +13,8 @@ Why do we need this? To easily make the pages you'reinterested in searchable. I'
 * JSONbin.io
 
 ## Screenshots of functionality on nowcontent.xyz
-The part with the actual bookmarklets comes later.
 
-<img width="1280" alt="Screenshot 2019-06-12 at 09 15 56" src="https://user-images.githubusercontent.com/236656/59330848-e399ea00-8cf2-11e9-9ed6-0c37fc157f2e.png">
-<img width="1280" alt="Screenshot 2019-06-12 at 12 35 28" src="https://user-images.githubusercontent.com/236656/59344606-bc511600-8d0e-11e9-80e5-5383185ed840.png">
-<img width="1280" alt="Screenshot 2019-06-12 at 12 35 13" src="https://user-images.githubusercontent.com/236656/59344614-c07d3380-8d0e-11e9-87e7-05837aadccea.png">
-
+<img width="899" alt="Screenshot 2019-08-25 at 10 30 29" src="https://user-images.githubusercontent.com/236656/63647586-e28a2d80-c723-11e9-9842-9640385e7c49.png">
+<img width="896" alt="Screenshot 2019-08-25 at 10 30 59" src="https://user-images.githubusercontent.com/236656/63647587-e322c400-c723-11e9-93c5-b12d1266f3f2.png">
+<img width="898" alt="Screenshot 2019-08-25 at 10 32 33" src="https://user-images.githubusercontent.com/236656/63647588-e322c400-c723-11e9-89d0-1a7eb91f207b.png">
+<img width="899" alt="Screenshot 2019-08-25 at 10 32 57" src="https://user-images.githubusercontent.com/236656/63647589-e322c400-c723-11e9-98c9-568a7304185a.png">
