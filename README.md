@@ -12,6 +12,10 @@ Why do we need this? To easily make the pages you'reinterested in searchable. I'
 * Sanity.io
 * JSONbin.io
 
+## Change to come
+
+Letting you choose if you want to grab just the text of the body tag or the whole HTML for the page in question.
+
 ## Screenshots of functionality on nowcontent.xyz
 
 <img width="899" alt="Screenshot 2019-08-25 at 10 30 29" src="https://user-images.githubusercontent.com/236656/63647586-e28a2d80-c723-11e9-9842-9640385e7c49.png">
