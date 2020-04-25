@@ -1,5 +1,5 @@
 # nowcontent.xyz
-WIP - [Something slightly working](https://eklem.github.io/nowcontent.xyz/) - Alpha, not beta ;-)
+WIP - [Stuff is working](https://eklem.github.io/nowcontent.xyz/) - Sketchy since I have no tests ;-)
 
 A bookmarklet that grabs the URL, title and text from the body element and send it to a service of your choice.
 
